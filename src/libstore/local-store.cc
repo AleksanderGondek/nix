@@ -177,11 +177,12 @@ LocalStore::LocalStore(
         std::filesystem::path path = realStoreDir.get();
         std::filesystem::path root = path.root_path();
         while (path != root) {
-            if (std::filesystem::is_symlink(path))
-                throw Error(
-                        "the path '%1%' is a symlink; "
-                        "this is not allowed for the Nix store and its parent directories",
-                        path);
+            // TODO: make it more narrow
+            // if (std::filesystem::is_symlink(path))
+            //     throw Error(
+            //             "the path '%1%' is a symlink; "
+            //             "this is not allowed for the Nix store and its parent directories",
+            //             path);
             path = path.parent_path();
         }
     }
